@@ -1,0 +1,43 @@
+; vuln_driver.inf
+; Driver primitivo (sem PnP) — instalacao manual via sc.exe
+; Uso educacional — NSE talk
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System
+ClassGuid   = {4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider    = %ProviderName%
+DriverVer   = 01/01/2024,1.0.0.0
+CatalogFile = vuln_driver.cat
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir  = 12
+DriverFiles     = 12
+
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+vuln_driver.sys = 1
+
+[DefaultInstall.NTamd64]
+CopyFiles = DriverFiles
+
+[DefaultInstall.NTamd64.Services]
+AddService = VulnDriver, 0x00000002, VulnDriver_Service
+
+[DriverFiles]
+vuln_driver.sys
+
+[VulnDriver_Service]
+DisplayName    = %ServiceDesc%
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %12%\vuln_driver.sys
+
+[Strings]
+ProviderName = "NSE Lab"
+ServiceDesc  = "VulnDriver - Educational Race Condition Demo"
+DiskName     = "VulnDriver Installation Disk"
