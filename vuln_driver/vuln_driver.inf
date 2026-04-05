@@ -1,6 +1,5 @@
 ; vuln_driver.inf
-; Driver primitivo (sem PnP) — instalacao manual via sc.exe
-; Uso educacional — NSE talk
+
 
 [Version]
 Signature   = "$WINDOWS NT$"
@@ -38,6 +37,6 @@ ErrorControl   = 1
 ServiceBinary  = %12%\vuln_driver.sys
 
 [Strings]
-ProviderName = "NSE Lab"
+ProviderName = "Vuln Driver"
 ServiceDesc  = "VulnDriver - Educational Race Condition Demo"
 DiskName     = "VulnDriver Installation Disk"
